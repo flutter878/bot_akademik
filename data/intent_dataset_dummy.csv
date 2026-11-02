@@ -1,0 +1,110 @@
+text,intent
+"bagaimana cara melihat jadwal kuliah",jadwal_kuliah
+"di mana saya bisa cek jadwal mata kuliah semester ini",jadwal_kuliah
+"kapan jadwal perkuliahan semester ganjil keluar",jadwal_kuliah
+"jadwal kuliah belum muncul di siakad",jadwal_kuliah
+"cara cek jadwal kelas dan ruangan perkuliahan",jadwal_kuliah
+"info jadwal kuliah jurusan informatika",jadwal_kuliah
+"melihat jadwal praktikum dan jam kuliah",jadwal_kuliah
+"kpn jadwal matkul keluar ya",jadwal_kuliah
+"gmn liat jadwal kelas semester baru",jadwal_kuliah
+"cek jadwal kuliah semester depan",jadwal_kuliah
+"jadwal perkuliahan kapan bisa diakses mahasiswa",jadwal_kuliah
+"lihat jadwal dosen mengajar dan pembagian kelas",jadwal_kuliah
+"kapan jadwal kuliah rilis",jadwal_kuliah
+"dimana jadwal perkuliahan semester genap bisa dilihat",jadwal_kuliah
+"kapan pengisian krs dibuka",krs
+"bagaimana prosedur pengisian kartu rencana studi",krs
+"krs saya belum disetujui dosen pembimbing akademik",krs
+"cara revisi krs yang sudah difinalisasi",krs
+"batas akhir pengisian krs online",krs
+"syarat mengisi krs apa saja",krs
+"batal tambah mata kuliah krs bagaimana caranya",krs
+"krs error saat simpan mata kuliah pilihan",krs
+"gmn cara isi krs online siakad",krs
+"jadwal revisi krs semester ini sampai kapan",krs
+"bisa ambil berapa sks di krs semester ini",krs
+"alur persetujuan dpa untuk pengesahan krs",krs
+"kapan jadwal kartu rencana studi dibuka",krs
+"cara mengambil matkul di sistem krs",krs
+"bagaimana cara pembayaran ukt",ukt_pembayaran
+"kapan batas akhir pembayaran uang kuliah tunggal",ukt_pembayaran
+"prosedur bayar ukt lewat virtual account bank mitra",ukt_pembayaran
+"cara mencicil ukt apakah bisa diajukan",ukt_pembayaran
+"bukti bayar ukt belum terverifikasi di portal",ukt_pembayaran
+"cara cek tagihan spp dan biaya kuliah",ukt_pembayaran
+"info pembayaran kuliah semester depan",ukt_pembayaran
+"byr ukt pake bank apa saja",ukt_pembayaran
+"kpn deadline bayar ukt semester ganjil",ukt_pembayaran
+"cara pembayaran uang kuliah lewat mobile banking",ukt_pembayaran
+"kenapa status ukt saya masih belum lunas padahal sudah transfer",ukt_pembayaran
+"pengajuan keringanan atau penurunan ukt bagaimana prosedurnya",ukt_pembayaran
+"kapan batas bayar spp kuliah",ukt_pembayaran
+"metode pembayaran ukt transfer bank",ukt_pembayaran
+"kapan semester baru dimulai",kalender_akademik
+"di mana bisa download kalender akademik universitas",kalender_akademik
+"kapan jadwal ujian tengah semester uts",kalender_akademik
+"kapan pelaksanaan ujian akhir semester uas",kalender_akademik
+"jadwal libur semester kuliah kapan ya",kalender_akademik
+"tanggal penting kalender akademik tahun ajaran ini",kalender_akademik
+"kapan yudisium dan wisuda periode ini diselenggarakan",kalender_akademik
+"cek kalender akademik kampus edisi terbaru",kalender_akademik
+"kapan masa perkuliahan efektif berakhir semester ini",kalender_akademik
+"jadwal minggu tenang sebelum ujian akhir semester",kalender_akademik
+"info kalender akademik dan agenda tahunan kampus",kalender_akademik
+"kpn libur perkuliahan semester ganjil dimulai",kalender_akademik
+"kapan masuk kuliah semester baru",kalender_akademik
+"unduh pdf kalender akademik universitas",kalender_akademik
+"bagaimana syarat mengurus surat aktif kuliah",administrasi
+"cara membuat surat keterangan mahasiswa aktif",administrasi
+"prosedur pengajuan cuti akademik semester",administrasi
+"syarat legalisir ijazah dan transkrip nilai akademik",administrasi
+"cara mengurus kartu tanda mahasiswa ktm yang hilang",administrasi
+"layanan persuratan akademik online kampus",administrasi
+"pengajuan surat pengantar magang atau penelitian skripsi",administrasi
+"gmn cara buat surat keterangan masih kuliah",administrasi
+"syarat mengajukan cuti kuliah berapa semester maksimal",administrasi
+"biro administrasi akademik buka jam berapa",administrasi
+"format surat permohonan administrasi kampus",administrasi
+"bikin ktm baru karena hilang atau rusak",administrasi
+"persyaratan administrasi berkas kelulusan",administrasi
+"cara legalisir dokumen akademik secara daring",administrasi
+"bagaimana cara menghubungi bagian akademik",kontak_akademik
+"nomor telepon loket layanan akademik universitas",kontak_akademik
+"alamat email helpdesk akademik kampus",kontak_akademik
+"lokasi gedung biro akademik di sebelah mana",kontak_akademik
+"jam operasional pelayanan loket akademik fakultas",kontak_akademik
+"kontak whatsapp customer service layanan mahasiswa",kontak_akademik
+"call center bagian akademik kampus",kontak_akademik
+"hubungi kontak bantuan akademik bila ada kendala",kontak_akademik
+"ke mana saya harus bertanya jika ada kendala akun siakad",kontak_akademik
+"jam kerja bagian tata usaha akademik hari jumat",kontak_akademik
+"kontak resmi humas dan layanan akademik rektorat",kontak_akademik
+"no wa loket akademik fakultas",kontak_akademik
+"halo selamat pagi",sapaan
+"selamat siang admin akademik",sapaan
+"halo apa kabar",sapaan
+"hai assalamualaikum",sapaan
+"selamat sore admin",sapaan
+"selamat malam",sapaan
+"halo bot akademik kampus",sapaan
+"hai selamat pagi chatbot",sapaan
+"halo saya mau bertanya info kampus",sapaan
+"hai admin akademik",sapaan
+"pagi min",sapaan
+"siang admin",sapaan
+"halo permisi mau tanya",sapaan
+"assalamualaikum wr wb halo",sapaan
+
+"berapa harga tiket pesawat ke luar negeri",unknown
+"resep cara memasak nasi goreng enak",unknown
+"rekomendasi film bioskop akhir pekan ini",unknown
+"siapa pemenang pertandingan sepak bola tadi malam",unknown
+"ramalan cuaca hari ini hujan atau cerah",unknown
+"cara memperbaiki motor mogok di jalan",unknown
+"tips merawat tanaman hias di rumah",unknown
+"harga laptop gaming terbaru tahun ini",unknown
+"tempat wisata terbaik untuk liburan keluarga",unknown
+"cara membuat akun media sosial baru",unknown
+"resep kue bolu kukus lembut",unknown
+"berita politik dan ekonomi terkini",unknown

@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dashboard Admin - Chatbot Layanan Akademik</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <style>
+        .dashboard-container { max-width: 900px; margin: 20px auto; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin: 20px 0; }
+        .stat-card { background: #f0f5fc; padding: 15px; border-radius: 10px; text-align: center; border: 1px solid #d0e0f5; }
+        .stat-number { font-size: 24px; font-weight: bold; color: #1f509a; margin-top: 5px; }
+        .tab-btn { padding: 10px 16px; border: 1px solid #bac7d7; background: #fff; cursor: pointer; border-radius: 6px; }
+        .tab-btn.active { background: #245db4; color: #fff; border-color: #245db4; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 14px; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+        th { background: #f4f7fb; }
+        .badge { display: inline-block; padding: 3px 8px; border-radius: 4px; font-size: 11px; font-weight: bold; }
+        .badge-active { background: #d4f4e4; color: #1b7a43; }
+        .badge-inactive { background: #ffe5e5; color: #c00; }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <main>
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; padding-bottom: 15px;">
+                <div>
+                    <h2 style="margin: 0;">Dashboard Administrator Akademik</h2>
+                    <span style="font-size: 13px; color: #666;" id="adminGreeting">Memuat data admin...</span>
+                </div>
+                <div>
+                    <a href="/" target="_blank" style="margin-right: 15px; text-decoration: none; font-size: 14px; color: #245db4;">Buka Chatbot Mahasiswa &nearr;</a>
+                    <button id="logoutBtn" style="background: #e63946; padding: 8px 14px; font-size: 13px;">Logout</button>
+                </div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div>Total Kategori Intent</div>
+                    <div class="stat-number" id="statIntents">-</div>
+                </div>
+                <div class="stat-card">
+                    <div>Total FAQ Tersimpan</div>
+                    <div class="stat-number" id="statFaqs">-</div>
+                </div>
+                <div class="stat-card">
+                    <div>FAQ Aktif</div>
+                    <div class="stat-number" id="statActiveFaqs">-</div>
+                </div>
+                <div class="stat-card">
+                    <div>Pertanyaan Fallback</div>
+                    <div class="stat-number" id="statUnanswered">-</div>
+                </div>
+            </div>
+
+            <div style="margin-top: 25px; display: flex; gap: 10px;">
+                <button class="tab-btn active" onclick="switchTab('faqs')">Daftar FAQ Basis Pengetahuan</button>
+                <button class="tab-btn" onclick="switchTab('unanswered')">Log Fallback (Unanswered)</button>
+            </div>
+
+            <!-- Tab FAQs -->
+            <div id="tabFaqs" style="margin-top: 20px;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <h3 style="margin: 0;">Basis Pengetahuan Akademik</h3>
+                </div>
+                <div style="overflow-x: auto;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Kategori</th>
+                                <th>Pertanyaan Contoh</th>
+                                <th>Jawaban</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="faqsTableBody">
+                            <tr><td colspan="4" style="text-align: center;">Memuat data FAQ...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Tab Unanswered -->
+            <div id="tabUnanswered" style="margin-top: 20px; display: none;">
+                <h3 style="margin: 0;">Log Pertanyaan Mahasiswa Belum Terjawab</h3>
+                <p style="font-size: 13px; color: #666;">Pertanyaan yang dialihkan ke fallback (tidak dikenali / di luar basis data).</p>
+                <div style="overflow-x: auto;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Waktu</th>
+                                <th>Pertanyaan Mahasiswa</th>
+                                <th>Prediksi Intent</th>
+                                <th>Confidence</th>
+                            </tr>
+                        </thead>
+                        <tbody id="unansweredTableBody">
+                            <tr><td colspan="4" style="text-align: center;">Memuat log...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        async function loadProfile() {
+            try {
+                const res = await fetch('/api/admin/me');
+                if (!res.ok) {
+                    window.location.href = '/admin/login';
+                    return;
+                }
+                const data = await res.json();
+                document.getElementById('adminGreeting').textContent = `${data.admin.name} (${data.admin.email})`;
+            } catch (err) {
+                window.location.href = '/admin/login';
+            }
+        }
+
+        async function loadStats() {
+            try {
+                const res = await fetch('/api/admin/stats');
+                const json = await res.json();
+                if (json.success) {
+                    document.getElementById('statIntents').textContent = json.data.total_intents;
+                    document.getElementById('statFaqs').textContent = json.data.total_faqs;
+                    document.getElementById('statActiveFaqs').textContent = json.data.active_faqs;
+                    document.getElementById('statUnanswered').textContent = json.data.total_unanswered;
+                }
+            } catch (err) {
+                console.error(err);
+            }
+        }
+
+        async function loadFaqs() {
+            try {
+                const res = await fetch('/api/admin/faqs');
+                const json = await res.json();
+                const tbody = document.getElementById('faqsTableBody');
+                if (json.success && json.data.length > 0) {
+                    tbody.innerHTML = json.data.map(faq => `
+                        <tr>
+                            <td><strong>${faq.intent_name}</strong><br><small style="color:#666">${faq.intent_code}</small></td>
+                            <td>${faq.question_example}</td>
+                            <td>${faq.answer}</td>
+                            <td><span class="badge ${faq.is_active ? 'badge-active' : 'badge-inactive'}">${faq.is_active ? 'Aktif' : 'Nonaktif'}</span></td>
+                        </tr>
+                    `).join('');
+                } else {
+                    tbody.innerHTML = '<tr><td colspan="4" style="text-align: center;">Belum ada FAQ tersimpan.</td></tr>';
+                }
+            } catch (err) {
+                console.error(err);
+            }
+        }
+
+        async function loadUnanswered() {
+            try {
+                const res = await fetch('/api/admin/unanswered');
+                const json = await res.json();
+                const tbody = document.getElementById('unansweredTableBody');
+                if (json.success && json.data.length > 0) {
+                    tbody.innerHTML = json.data.map(u => `
+                        <tr>
+                            <td><small>${u.created_at}</small></td>
+                            <td>${u.question}</td>
+                            <td><code>${u.predicted_intent}</code></td>
+                            <td>${(u.confidence_score * 100).toFixed(1)}%</td>
+                        </tr>
+                    `).join('');
+                } else {
+                    tbody.innerHTML = '<tr><td colspan="4" style="text-align: center;">Belum ada log pertanyaan fallback.</td></tr>';
+                }
+            } catch (err) {
+                console.error(err);
+            }
+        }
+
+        function switchTab(tab) {
+            const btns = document.querySelectorAll('.tab-btn');
+            btns.forEach(b => b.classList.remove('active'));
+            if (tab === 'faqs') {
+                btns[0].classList.add('active');
+                document.getElementById('tabFaqs').style.display = 'block';
+                document.getElementById('tabUnanswered').style.display = 'none';
+                loadFaqs();
+            } else {
+                btns[1].classList.add('active');
+                document.getElementById('tabFaqs').style.display = 'none';
+                document.getElementById('tabUnanswered').style.display = 'block';
+                loadUnanswered();
+            }
+        }
+
+        document.getElementById('logoutBtn').addEventListener('click', async () => {
+            await fetch('/api/admin/logout', { method: 'POST' });
+            window.location.href = '/admin/login';
+        });
+
+        loadProfile();
+        loadStats();
+        loadFaqs();
+    </script>
+</body>
+</html>
+

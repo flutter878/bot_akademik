@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login Admin - Chatbot Layanan Akademik</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <main style="max-width: 420px; margin-top: 60px;">
+        <h2>Login Administrator</h2>
+        <p style="color: #666; font-size: 14px;">Masukkan kredensial pengelola layanan akademik.</p>
+        <div id="alertBox" style="display:none; padding:10px; border-radius:6px; margin-bottom:12px; font-size:14px;"></div>
+        <form id="adminLoginForm" style="display: flex; flex-direction: column; gap: 12px;">
+            <div>
+                <label style="display:block; font-size: 13px; font-weight: bold; margin-bottom: 4px;">Email</label>
+                <input type="email" id="email" value="admin@kampus.local" required style="width: 100%;">
+            </div>
+            <div>
+                <label style="display:block; font-size: 13px; font-weight: bold; margin-bottom: 4px;">Password</label>
+                <input type="password" id="password" value="adminpassword123" required style="width: 100%;">
+            </div>
+            <button type="submit" style="margin-top: 8px;">Masuk ke Dashboard</button>
+        </form>
+        <p style="text-align: center; margin-top: 20px; font-size: 13px;">
+            <a href="/" style="color: #245db4; text-decoration: none;">&larr; Kembali ke Chat Mahasiswa</a>
+        </p>
+    </main>
+
+    <script>
+        const form = document.getElementById('adminLoginForm');
+        const alertBox = document.getElementById('alertBox');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value.trim();
+            alertBox.style.display = 'none';
+
+            try {
+                const res = await fetch('/api/admin/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+                const data = await res.json();
+                if (data.success) {
+                    window.location.href = '/admin';
+                } else {
+                    alertBox.style.display = 'block';
+                    alertBox.style.background = '#ffe5e5';
+                    alertBox.style.color = '#c00';
+                    alertBox.textContent = data.error || 'Login gagal.';
+                }
+            } catch (err) {
+                alertBox.style.display = 'block';
+                alertBox.style.background = '#ffe5e5';
+                alertBox.style.color = '#c00';
+                alertBox.textContent = 'Gagal menghubungi server.';
+            }
+        });
+    </script>
+</body>
+</html>
+
